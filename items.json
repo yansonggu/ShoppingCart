@@ -1,0 +1,1 @@
+[{"items":{"itemName":"avocado","sale":false,"condition":0,"price":2.0,"saleType":"","discount":0}},{"items":{"itemName":"peach","sale":true,"condition":4,"price":0.75,"saleType":"buy 4 or more the price drops to 50 cents each","discount":0.5}},{"items":{"itemName":"mango","sale":true,"condition":2,"price":2.0,"saleType":"buy one get one free","discount":0.5}}]
