@@ -26,59 +26,45 @@ public class ShoppingJunitTest {
 	public void tearDown() throws Exception {
 	}
 
-	@Test
-	public void testShopping() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetShoppingCart() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testMain() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testCheckOut() {
-		fail("Not yet implemented");
-	}
+ 
 	@Test
 	public void testSillyCustomer() {
-		Shopping sh = new Shopping();
-		ShoppingCart shoppingCart = sh.getShoppingCart();
+		Shopping sh1 = new Shopping();
+		ShoppingCart shoppingCart = sh1.getShoppingCart();
 		shoppingCart.addItem("Peach", 3);
-		sh.checkOut();
+		sh1.checkOut();
+		assertEquals("2.25", String.valueOf(sh1.whatIsTheTotal()));
 	}
 
 	@Test
 	public void testSmartCustomer() {
-		Shopping sh = new Shopping();
-		ShoppingCart shoppingCart = sh.getShoppingCart();
+		Shopping sh2 = new Shopping();
+		ShoppingCart shoppingCart = sh2.getShoppingCart();
 		shoppingCart.addItem("Peach", 4);
-		sh.checkOut();
+		sh2.checkOut();
+		assertEquals("2.0", String.valueOf(sh2.whatIsTheTotal()));
 	}
 
 	@Test
 	public void testThreeItemSmart() {
-		Shopping sh = new Shopping();
-		ShoppingCart shoppingCart = sh.getShoppingCart();
+		Shopping sh3 = new Shopping();
+		ShoppingCart shoppingCart = sh3.getShoppingCart();
 		shoppingCart.addItem("Peach", 4);
 		shoppingCart.addItem("Avocado", 1);
 		shoppingCart.addItem("Mango", 3);
-		sh.checkOut();
+		sh3.checkOut();
+		assertEquals("8.0", String.valueOf(sh3.whatIsTheTotal()));
 	}
 
 	@Test
 	public void testThreeItemSilly() {
-		Shopping sh = new Shopping();
-		ShoppingCart shoppingCart = sh.getShoppingCart();
+		Shopping sh4 = new Shopping();
+		ShoppingCart shoppingCart = sh4.getShoppingCart();
 		shoppingCart.addItem("Peach", 3);
 		shoppingCart.addItem("Avocado", 1);
 		shoppingCart.addItem("Mango", 3);
-		sh.checkOut();
+		sh4.checkOut();
+		assertEquals("8.25", String.valueOf(sh4.whatIsTheTotal()));
 
 	}
 
@@ -90,6 +76,16 @@ public class ShoppingJunitTest {
 		shoppingCart.addItem("Avocado", 0);
 		shoppingCart.addItem("Mango", 0);
 		sh.checkOut();
+		assertEquals("0.0", String.valueOf(sh.whatIsTheTotal()));
+	}
+	
+	@Test
+	public void testOneRegularItem() {
+		Shopping sh4 = new Shopping();
+		ShoppingCart shoppingCart = sh4.getShoppingCart(); 
+		shoppingCart.addItem("Avocado", 1); 
+		sh4.checkOut();
+		assertEquals("2.0", String.valueOf(sh4.whatIsTheTotal()));
 
 	}
 }

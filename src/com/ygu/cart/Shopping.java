@@ -36,7 +36,7 @@ package com.ygu.cart;
 public class Shopping {
 
 	private ShoppingCart shoppingCart;
-
+	private CashRegister cashRegister=new CashRegister();
 	public Shopping() {
 		shoppingCart = new ShoppingCart();
 	}
@@ -49,15 +49,21 @@ public class Shopping {
 	public static void main(String[] args) {
 
 		Shopping shopping = new Shopping();
+		
 		ShoppingCart shoppingCart = shopping.getShoppingCart();
 		shoppingCart.addItem("Peach", 4);
 		shoppingCart.addItem("Avocado", 1);
 		shoppingCart.addItem("Mango", 3);
 
-		shopping.checkOut();
+		shopping.checkOut();  
 
 	}
 
+ 
+
+	public double whatIsTheTotal(){
+		return cashRegister.getTotalPrice();
+	}
 	public void checkOut() {
 		if (this.shoppingCart.isEmpty()) {
 
@@ -65,7 +71,8 @@ public class Shopping {
 
 		} else {
 
-			CashRegister.CalculateTotalPrice(shoppingCart);
+			cashRegister.CalculateTotalPrice(shoppingCart);
+			cashRegister.pay();
 
 		}
 

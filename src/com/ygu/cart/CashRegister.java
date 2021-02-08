@@ -3,17 +3,16 @@ package com.ygu.cart;
 import java.util.HashMap;
 
 public class CashRegister {
-	private static double totalPrice = 0;
-
+	private static double totalPrice;
+	private static StockPileStoreItems si = new StockPileStoreItems();
+	private static HashMap<String, Double> pricelist = new HashMap<String, Double>();
+	
 	public static void CalculateTotalPrice(ShoppingCart shoppingCart) {
-
-		double temp = 0;
-		ItemFullSpecification item;
-		int price;
-		StockPileStoreItems si = new StockPileStoreItems();
-		HashMap<String, Double> pricelist = new HashMap<String, Double>();
+ 
+		
+		pricelist.clear();
 		for (String itemName : shoppingCart.BucketItems.keySet()) {
-
+			totalPrice = 0.0;
 			int count = shoppingCart.BucketItems.get(itemName);
 			ItemFullSpecification bucketItem = si.getItem(itemName);
   
@@ -55,7 +54,30 @@ public class CashRegister {
 		for (String name : pricelist.keySet()) {
 			totalPrice += pricelist.get(name);
 		}
+		 
+	}
+
+	public void pay() {
 		System.out.println("\n-----------Your total cost: " + totalPrice);
+		
+	}
+	
+	public void takeOutItem(ShoppingCart shoppingCart, String itemName, int takeOutQuantity){
+		
+		for (String name : this.pricelist.keySet()) {
+			if(itemName.equals(name)){
+				int count = shoppingCart.BucketItems.get(itemName);
+				shoppingCart.BucketItems.put(name, (count-takeOutQuantity)); 
+			}
+		 
+		}
+		CalculateTotalPrice(shoppingCart);
+		
+	}
+	
+	public static double getTotalPrice() {
+		return totalPrice;
+		
 	}
 
 }
